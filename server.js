@@ -1,11 +1,11 @@
 /*-------------------- Configure My Serverv --------------------------*/
 
 const express = require('express');
-const { param } = require('express/lib/request');
 const server = express();
 server.set('view engine', 'ejs');
 server.use(express.static('public'));
 server.listen(7000);
+
 
 /*--------------------- Object Store Title of each page ---------------*/
 
@@ -22,7 +22,7 @@ const args = {
 /*-------------------- Rout Middlewares --------------------------*/
 
 server.get('/', (_, res) => {
-    res.render('home', { title: args.home });
+    res.status(200).render('home', { title: args.home });
 });
 
 
@@ -42,6 +42,7 @@ server.get('/login', (_, res) => {
     res.render('login', { title: args.login });
 });
 
+
 server.get('/admin', (req, res) => {
 
     if (req.url.includes("?role")) {
@@ -55,6 +56,6 @@ server.get('/admin', (req, res) => {
 
 
 
-server.use((req, res) => {
+server.use((_, res) => {
     res.render('404', { title: args.error });
 });
