@@ -3,8 +3,6 @@
 const express = require('express');
 const { param } = require('express/lib/request');
 const server = express();
-// server.engine('html', require('ejs').renderFile);
-// server.set('view engine', 'html');
 server.set('view engine', 'ejs');
 server.use(express.static('public'));
 server.listen(7000);
